@@ -12,10 +12,6 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Install Ninja
-        run: choco install ninja -y
-        shell: powershell
-
       - name: Install CMake
         uses: jwlawson/actions-setup-cmake@v2
         with:
@@ -34,11 +30,7 @@ jobs:
         shell: powershell
 
       - name: CMake configuration
-        run: cmake -S . -B Build -G Ninja ^
-            -DCMAKE_C_COMPILER=clang.exe ^
-            -DCMAKE_CXX_COMPILER=clang++.exe ^
-            -D CMAKE_BUILD_TYPE=Debug ^
-            -D AURA_ENABLE_TESTING=On
+        run: cmake -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Debug -D AURA_ENABLE_TESTING=On
         shell: powershell
 
       - name: Ninja compilation

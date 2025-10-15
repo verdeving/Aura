@@ -52,8 +52,24 @@ jobs:
         run: echo "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         shell: powershell
 
+      - name: CMake gcc debug configuration
+        run: cmake -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++ -D CMAKE_LINKER=ld -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Debug -D AURA_ENABLE_TESTING=On
+        shell: powershell
+      
+      - name: Ninja gcc debug compilation
+        run: ninja -C Build
+        shell: powershell
+
+      - name: CMake gcc release configuration
+        run: cmake -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++ -D CMAKE_LINKER=ld -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Release -D AURA_ENABLE_TESTING=On
+        shell: powershell
+
+      - name: Ninja gcc release compilation
+        run: ninja -C Build
+        shell: powershell
+
       - name: CMake clang debug configuration
-        run: cmake -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_LINKER=lld -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Debug -D AURA_ENABLE_TESTING=On
+        run: cmake -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_LINKER=lld -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Debug -D AURA_ENABLE_TESTING=On
         shell: powershell
 
       - name: Ninja clang debug compilation
@@ -61,9 +77,9 @@ jobs:
         shell: powershell
       
       - name: CMake clang release configuration
-        run: cmake -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_LINKER=lld -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Release -D AURA_ENABLE_TESTING=On
+        run: cmake -D CMAKE_CXX_COMPILER=clang++ -D CMAKE_LINKER=lld -S . -B Build -G Ninja -D CMAKE_BUILD_TYPE=Release -D AURA_ENABLE_TESTING=On
         shell: powershell
 
-      - name: Ninja release compilation
+      - name: Ninja clang release compilation
         run: ninja -C Build
         shell: powershell

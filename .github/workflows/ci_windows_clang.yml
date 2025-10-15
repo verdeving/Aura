@@ -22,7 +22,7 @@ jobs:
           cmake-version: 'latest'
       
       - name: Install LLVM (Clang 21)
-        run: curl -LO https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.3/LLVM-21.1.3-win64.exe 7z x LLVM-21.0.0-win64.exe -o "C:\LLVM"
+        run: curl -LO https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.3/LLVM-21.1.3-win64.exe 7z x LLVM-21.1.3-win64.exe -o "C:\LLVM"
 
       - name: Add LLVM to PATH
         run: echo "C:\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append

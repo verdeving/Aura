@@ -26,7 +26,7 @@ jobs:
         shell: powershell
 
       - name: Extract LLVM
-        run: 7z x LLVM-21.1.3-win64.exe -o C:\LLVM
+        run: 7z x LLVM-21.1.3-win64.exe -oC:\LLVM
         shell: powershell
 
       - name: Add LLVM to PATH

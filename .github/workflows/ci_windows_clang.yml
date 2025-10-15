@@ -22,7 +22,7 @@ jobs:
           cmake-version: 'latest'
       
       - name: Install LLVM
-        run: curl -LO https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.3/LLVM-21.1.3-win64.exe
+        run: Invoke-WebRequest -Uri "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.3/LLVM-21.1.3-win64.exe" -OutFile "LLVM-21.1.3-win64.exe"
         shell: powershell
 
       - name: Extract LLVM

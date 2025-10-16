@@ -71,8 +71,6 @@ struct WithReferenceMember
 struct Abstract
 {
     virtual void foo() = 0;
-    
-    int x;
 };
 
 struct Base

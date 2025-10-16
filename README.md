@@ -1,3 +1,5 @@
+WARNING: Aura is a very early WIP project, shouldn't be used in production code for now!
+
 ![Aura's logo](./Logo.png)
 
 
@@ -24,9 +26,11 @@ For now, Aura only compiles with the latest Windows 11, but builds for Linux and
 
 Prerequisites:
 
-- C++26‑capable compiler (Clang ≥ 22, GCC ≥ 16).
+- A 64-bits architecture and system.
+- A GPU able to run D3D12, Vulkan and Metal, in their respective systems.
+- A C++26‑capable compiler (Clang ≥ 22, GCC ≥ 16).
 - CMake ≥ 4.1.2
-- Latest Ninja
+- Latest Ninja.
 
 Build Instructions
 
@@ -44,8 +48,10 @@ Aura provides doxygen-style comments so that you can generate the documentation 
 
 
 📜 License
+
 Aura is licensed under the GPL‑3.0 license. See LICENSE for details.
 
 
 🌟 Vision
+
 Aura is not just a game engine — it’s an experiment in what C++26 can offer when safety, performance, and developer experience are treated as first‑class citizens. The goal is to empower developers to build ambitious, real‑time worlds without sacrificing clarity or reliability.

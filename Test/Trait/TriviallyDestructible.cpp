@@ -127,12 +127,7 @@ struct NonTrivialElem
     static_assert(TriviallyDestructible<int[3]>);
     static_assert(TriviallyDestructible<int[2][2]>);
 
-    // References: IMHO, and even if this goes against the standard, references should be trivially
-    // destructible, because you're not supposed to explicitly call the destructor anyways, so this
-    // is fine, you should never encounter something like:
-    //
-    // if constexpr(Reference<T> and TriviallyDestructible<T>)
-    //     ref.~T();
+    // References
     static_assert(TriviallyDestructible<int&>);
     static_assert(TriviallyDestructible<int&&>);
 

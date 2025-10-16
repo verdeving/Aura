@@ -2,6 +2,10 @@
 #ifndef aura_guard_trait_trivially_destructible
 #define aura_guard_trait_trivially_destructible
 #include "Sized.hpp"
+#ifdef aura_gcc
+#include "Reference.hpp"
+#include "BoundedArray.hpp"
+#endif
 
 namespace Aura::Trait
 {
@@ -17,7 +21,10 @@ namespace Aura::Trait
     #ifdef aura_clang
     __is_trivially_destructible
     #else
-    __has_trivial_destructor
+    (requires(Self self)
+    {
+        self.compl Self();
+    } or Reference<Self> or BoundedArray<Self>) and __has_trivial_destructor
     #endif
     (Self);
 }

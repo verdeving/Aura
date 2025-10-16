@@ -14,7 +14,12 @@ namespace Aura::Trait
      * - All the `Self` non-static data members also satisfy this concept.
      */
     template<class Self> concept TriviallyDestructible = Sized<Self> and
-    __is_trivially_destructible(Self);
+    #ifdef aura_clang
+    __is_trivially_destructible
+    #else
+    __has_trivial_destructor
+    #endif
+    (Self);
 }
 
 #endif

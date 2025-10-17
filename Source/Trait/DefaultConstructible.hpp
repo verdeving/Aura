@@ -6,8 +6,8 @@
 namespace Aura::Trait
 {
     /**
-     * @brief Satisfied when `Self` is `Sized` and it has an eligible trivial or non-trivial
-     * default constructor.
+     * @brief Satisfied when `Self` is `Sized` and has an eligible trivial or non-trivial
+     * constructor where no parameters are given or all the parameters have a default argument.
      */
     template<class Self> concept DefaultConstructible = Sized<Self> and __is_constructible(Self);
 }

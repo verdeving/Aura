@@ -17,11 +17,11 @@ namespace Aura::Trait
     #ifdef aura_clang
     __is_destructible(Self)
     #else
-    requires(Self self)
+    (requires(Self self)
     {
         self.compl Self();
     }
-    or (Reference<Self> and not Function<Self>) or BoundedArray<Self>
+    or (Reference<Self> and not Function<Self>) or BoundedArray<Self>)
     #endif
     ;
 }

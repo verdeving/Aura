@@ -41,7 +41,7 @@ jobs:
         shell: powershell
       
       - name: Install LLVM
-        run: Invoke-WebRequest -Uri "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.3/LLVM-21.1.3-win64.exe" -OutFile "LLVM-aura.exe"
+        run: Invoke-WebRequest -Uri "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.4/LLVM-21.1.4-win64.exe" -OutFile "LLVM-aura.exe"
         shell: powershell
 
       - name: Extract LLVM

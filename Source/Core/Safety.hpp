@@ -22,23 +22,11 @@
  */
 #define $s(...) [aura_safety_object_private_and_secret_424242 __VA_OPT__(,) __VA_ARGS__]
 /**
- * @brief Creates a safe context with the additional given parameters, if any, in the template
- * parameter list form.
- */
-#define $treliable(...) template<::Aura::Detail::Safety<> \
-aura_safety_object_private_and_secret_424242 __VA_OPT__(,) __VA_ARGS__>
-/**
  * @brief Creates an unsafe context with the additional given parameters, if any, in the template
  * parameter list form.
  */
 #define $tunreliable(...) template<::Aura::Detail::Safety<false> \
 aura_safety_object_private_and_secret_424242 __VA_OPT__(,) __VA_ARGS__>
-/**
- * @brief Creates a safe context with the additional given parameters, if any, in the function
- * parameter list form.
- */
-#define $reliable(...) ([[maybe_unused]] const ::Aura::Detail::Safety<> \
-aura_safety_object_private_and_secret_424242 __VA_OPT__(,) __VA_ARGS__)
 /**
  * @brief Creates an unsafe context with the additional given parameters, if any, in the function
  * parameter list form.

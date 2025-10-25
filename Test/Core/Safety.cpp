@@ -22,7 +22,7 @@ struct very_simple_pool
     }
 
     // lets make an additional safe ctor that initializes the data members
-    constexpr very_simple_pool $reliable(const unsigned initial_capacity) noexcept : pointer(
+    constexpr very_simple_pool(const unsigned initial_capacity) noexcept : pointer(
     new data[initial_capacity]), capacity(initial_capacity){}
 
     // unsafe subscript context, since we don't check for index < capacity
@@ -32,7 +32,7 @@ struct very_simple_pool
     }
 };
 
-$treliable() consteval int bar() noexcept
+consteval int bar() noexcept
 {
     return 0;
 }
@@ -47,11 +47,6 @@ consteval int foo() noexcept // normal foo overload
     return 2;
 }
 
-consteval int foo $reliable() noexcept // reliable foo overload
-{
-    return 3;
-}
-
 consteval int foo $unreliable() noexcept // unreliable foo overload
 {
     return 4;
@@ -60,8 +55,6 @@ consteval int foo $unreliable() noexcept // unreliable foo overload
 [[nodiscard]] auto aura_testing() noexcept -> bool
 {
     static_assert(foo() == 2 // normal foo call
-    and foo $() == 3 // implicit safe context because of the inline constexpr variable declared above,
-    // so it calls the safe foo overload
     and [&]
     {
         $unsafe // explicit unsafe context
@@ -76,11 +69,11 @@ consteval int foo $unreliable() noexcept // unreliable foo overload
         {
             $safe // explicit safe context
             {
-                return foo $(); // because of safe context re-entrance thanks to the explicit safe,
-                // despite the prior unsafe context, it calls to the safe foo overload
+                return foo(); // because of safe context re-entrance thanks to the explicit safe,
+                // despite the prior unsafe context, it calls to the normal foo overload
             }
         }
-    }() == 3
+    }() == 2
     and [&]
     {
         bool previous_context_was_unsafe;
@@ -90,14 +83,10 @@ consteval int foo $unreliable() noexcept // unreliable foo overload
         $safe // explicit safe context
         {
             if(previous_context_was_unsafe)
-                return foo $() + 2; // Ok
-            return foo $();
+                return foo() + 2; // Ok
+            return foo();
         }
-    }() == 5
-    and [&]
-    {
-        return bar $t()(); // calls the treliable bar, since the implicit initial context is safe
-    }() == 0
+    }() == 4
     and [&]
     {
         $unsafe
@@ -111,7 +100,7 @@ consteval int foo $unreliable() noexcept // unreliable foo overload
             // context!
             $safe
             {
-                very_simple_pool vsp $b(4); // Ok
+                very_simple_pool vsp{4}; // Ok
                 // vsp $s(0) = data{3, 42};   error, vsp heap elements can only be accessed in an
                 // unsafe context!
                 $unsafe

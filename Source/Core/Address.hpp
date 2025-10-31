@@ -26,7 +26,7 @@ namespace Aura
     }
 
     template<Trait::Sized Self> [[nodiscard]] consteval auto address(Self&&) noexcept -> Self* =
-    delete;
+    delete("taking the address of a prvalue or temporary is too dangerous");
 }
 
 #endif

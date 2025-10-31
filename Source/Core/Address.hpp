@@ -24,6 +24,9 @@ namespace Aura
     {
         return __builtin_addressof(object);
     }
+
+    template<Trait::Sized Self> [[nodiscard]] consteval auto address(Self&&) noexcept -> Self* =
+    delete;
 }
 
 #endif

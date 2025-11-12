@@ -28,4 +28,10 @@ int main()
     return not aura_testing();
 }
 
+#ifdef aura_gcc
+int WINAPI WinMain(HINSTANCE instance, HINSTANCE previous, LPSTR, int show)
+{
+    return wWinMain(instance, previous, GetCommandLineW(), show);
+}
+#endif
 #endif

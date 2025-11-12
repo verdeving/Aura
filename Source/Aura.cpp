@@ -2,7 +2,7 @@
 #ifdef aura_windows
 #include <Windows.h>
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int)
 {
     return 0;
 }

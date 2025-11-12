@@ -67,7 +67,7 @@ using F1 = int(int);
 }
 
 #ifdef aura_windows
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int)
 #else
 int main()
 #endif

@@ -33,7 +33,7 @@ int main()
     return not aura_testing();
 }
 
-#ifdef aura_gcc
+#if defined(aura_gcc) and defined(aura_windows)
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previous, LPSTR, int show)
 {
     return wWinMain(instance, previous, GetCommandLineW(), show);
